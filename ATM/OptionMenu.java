@@ -144,7 +144,7 @@ public class OptionMenu {
 					acc.getSavingDepositInput();
 					break;
 				case 4:
-					acc.getTransferInput("Savings");
+					acc.getTransferInput("Investment");
 					break;
 				case 5:
 					end = true;
@@ -179,7 +179,7 @@ public class OptionMenu {
 						acc.getInvestmentWithdrawInput();
 						break;
 					case 3:
-						acc.getSavingDepositInput();
+						acc.getInvestmentDepositInput();
 						break;
 					case 4:
 						acc.getTransferInput("Savings");
