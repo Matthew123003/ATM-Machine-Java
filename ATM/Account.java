@@ -9,6 +9,10 @@ public class Account {
 	private double checkingBalance = 0;
 	private double savingBalance = 0;
 
+	private double investmentBalance = 0;
+
+	private double totalBalance = 0;
+
 	Scanner input = new Scanner(System.in);
 	DecimalFormat moneyFormat = new DecimalFormat("'$'###,##0.00");
 
@@ -20,11 +24,17 @@ public class Account {
 		this.pinNumber = pinNumber;
 	}
 
-	public Account(int customerNumber, int pinNumber, double checkingBalance, double savingBalance) {
+	public Account(int customerNumber, int pinNumber, double checkingBalance, double savingBalance, double investmentBalance) {
 		this.customerNumber = customerNumber;
 		this.pinNumber = pinNumber;
 		this.checkingBalance = checkingBalance;
 		this.savingBalance = savingBalance;
+		this.investmentBalance = investmentBalance;
+	}
+
+	public double totalBalance(){
+		totalBalance = getCheckingBalance() + getSavingBalance();
+		return totalBalance;
 	}
 
 	public int setCustomerNumber(int customerNumber) {
@@ -53,6 +63,11 @@ public class Account {
 		return savingBalance;
 	}
 
+
+	public double getInvestmentBalance(){
+		return investmentBalance;
+	}
+
 	public double calcCheckingWithdraw(double amount) {
 		checkingBalance = (checkingBalance - amount);
 		return checkingBalance;
@@ -61,6 +76,11 @@ public class Account {
 	public double calcSavingWithdraw(double amount) {
 		savingBalance = (savingBalance - amount);
 		return savingBalance;
+	}
+
+	public double calcInvestmentWithdraw(double amount){
+		investmentBalance = (investmentBalance - amount);
+		return investmentBalance;
 	}
 
 	public double calcCheckingDeposit(double amount) {
@@ -124,6 +144,28 @@ public class Account {
 			}
 		}
 	}
+
+	public void getInvestmentWithdrawInput() {
+		boolean end = false;
+		while (!end) {
+			try {
+				System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(investmentBalance));
+				System.out.print("\nAmount you want to withdraw from Investment Account: ");
+				double amount = input.nextDouble();
+				if ((investmentBalance - amount) >= 0 && amount >= 0) {
+					calcInvestmentWithdraw(amount);
+					System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(investmentBalance));
+					end = true;
+				} else {
+					System.out.println("\nBalance Cannot Be Negative.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Choice.");
+				input.next();
+			}
+		}
+	}
+
 
 	public void getCheckingDepositInput() {
 		boolean end = false;
@@ -232,4 +274,5 @@ public class Account {
 			}
 		}
 	}
+
 }
