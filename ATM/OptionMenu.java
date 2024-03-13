@@ -163,7 +163,7 @@ public class OptionMenu {
 		boolean end = false;
 		while (!end) {
 			try {
-				System.out.println("\nSavings Account: ");
+				System.out.println("\nInvestment Account: ");
 				System.out.println(" Type 1 - View Balance");
 				System.out.println(" Type 2 - Withdraw Funds");
 				System.out.println(" Type 3 - Deposit Funds");
@@ -183,6 +183,7 @@ public class OptionMenu {
 						break;
 					case 4:
 						acc.getTransferInput("Savings");
+						acc.getTransferInput("Checking");
 						break;
 					case 5:
 						end = true;

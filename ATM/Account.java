@@ -231,9 +231,9 @@ public class Account {
 				System.out.print("\nAmount you want to deposit into your Investment Account: ");
 				double amount = input.nextDouble();
 
-				if ((savingBalance + amount) >= 0 && amount >= 0) {
-					calcSavingDeposit(amount);
-					System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(savingBalance));
+				if ((investmentBalance + amount) >= 0 && amount >= 0) {
+					calcInvestmentDeposit(amount);
+					System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(investmentBalance));
 					end = true;
 				} else {
 					System.out.println("\nBalance Cannot Be Negative.");
@@ -296,7 +296,7 @@ public class Account {
 					System.out.println("\nSelect an account you wish to transfer funds to: ");
 					System.out.println("1. Checking");
 					System.out.println("2. Investment");
-					System.out.println("2. Exit");
+					System.out.println("3. Exit");
 					System.out.print("\nChoice: ");
 					int choice = input.nextInt();
 					switch (choice) {
@@ -318,7 +318,7 @@ public class Account {
 						System.out.println("\nAmount you want to deposit int your Investment Account: ");
 						double amount1 = input.nextDouble();
 						if ((investmentBalance + amount1) >= 0 && (savingBalance - amount1) >= 0 && amount1 >= 0) {
-							calcCheckTransfer(amount1);
+							calcSavingTransfer(amount1);
 							System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(investmentBalance));
 							System.out.println(
 									"\nCurrent Saving Account Balance: " + moneyFormat.format(savingBalance));
@@ -337,7 +337,7 @@ public class Account {
 					System.out.println("\nSelect an account you wish to transfer funds to: ");
 					System.out.println("1. Checking");
 					System.out.println("2. Savings");
-					System.out.println("2. Exit");
+					System.out.println("3. Exit");
 					System.out.print("\nChoice: ");
 					int choice = input.nextInt();
 					switch (choice) {
@@ -346,7 +346,7 @@ public class Account {
 							System.out.print("\nAmount you want to deposit into your checking account: ");
 							double amount = input.nextDouble();
 							if ((checkingBalance + amount) >= 0 && (investmentBalance - amount) >= 0 && amount >= 0) {
-								calcSavingTransfer(amount);
+								calcInvestmentTransfer(amount);
 								System.out.println("\nCurrent checking account balance: " + moneyFormat.format(checkingBalance));
 								System.out.println("\nCurrent investment account balance: " + moneyFormat.format(investmentBalance));
 								end = true;
@@ -359,7 +359,7 @@ public class Account {
 							System.out.println("\nAmount you want to deposit int your Saving Account: ");
 							double amount1 = input.nextDouble();
 							if ((savingBalance + amount1) >= 0 && (investmentBalance - amount1) >= 0 && amount1 >= 0) {
-								calcCheckTransfer(amount1);
+								calcInvestmentTransfer(amount1);
 								System.out.println("\nCurrent Investment Account Balance: " + moneyFormat.format(investmentBalance));
 								System.out.println(
 										"\nCurrent Saving Account Balance: " + moneyFormat.format(savingBalance));
