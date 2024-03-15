@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class OptionMenu {
 				System.out.println("\nInvalid Character(s). Only Numbers.");
 			}
 		}
+		createCSVFile(data);
 	}
 
 	public void getAccountType(Account acc) {
@@ -260,4 +262,20 @@ public class OptionMenu {
 		menuInput.close();
 		System.exit(0);
 	}
-}
+
+	public void createCSVFile(HashMap <Integer, Account> data){
+		String csvFile = "Data.csv";
+		try{FileWriter fileWriter = new FileWriter("Data.csv", true);
+				for(Map.Entry<Integer, Account> input : data.entrySet()) {
+					fileWriter.append("").append(input.getKey().toString()).append("").append(",");
+					fileWriter.append("").append(input.getValue().toString()).append("").append(",");
+				}
+				fileWriter.append("\n");
+				fileWriter.close();
+
+				} catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+	}
+
